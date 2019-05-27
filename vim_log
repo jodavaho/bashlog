@@ -10,10 +10,12 @@ set autochdir
 :highlight DONETRACK ctermbg=green 
 :highlight TAGTRACK ctermbg=blue 
 :highlight REDTRACK ctermbg=red 
-:highlight TRASHTRACK ctermbg=gray ctermfg=black
+:highlight PUSHTRACK ctermbg=DarkGray ctermfg=Gray
+:highlight TRASHTRACK ctermbg=Black ctermfg=DarkGray
 
 :let mdone = matchadd("DONETRACK","\\[x\\]")
 :let mdone = matchadd("DONETRACK","\\[v\\]")
 :let mtodo = matchadd("TODOTRACK", "\\[ \\]")
 :let mhigh = matchadd("REDTRACK", "\\[-\\]")
 :let mtrash = matchadd("TRASHTRACK", "\\[v\\]")
+:let mdelay = matchadd("PUSHTRACK", "\\[>\\]")

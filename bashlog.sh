@@ -1,17 +1,22 @@
-export LOG_EDITOR='vim'
-export LOG_DIRECTORY='~'
-export date_format="+%Y-%m-%d"
+#Get current directory for fun
 
-alias tomorrow='$LOG_EDITOR $(date -d tomorrow "$date_format").md'
-alias today='$LOG_EDITOR $(date "$date_format").md'
-alias yesterday='$LOG_EDITOR $(date -d yesterday "$date_format").md'
-alias weekly='$LOG_EDITOR $(date +%G-week-%V).md'
-alias monthly='$LOG_EDITOR $(date +%G-month-%m).md'
-alias daily='$LOG_EDITOR $(date "$date_format").md'
+export bashlog_setup_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
+
+if [ -z ${LOG_EDITOR} ];
+then
+  export LOG_EDITOR="vim -S $bashlog_setup_dir/vim_log"
+fi
+
+if [ -z ${LOG_DIRECTORY} ];
+then
+  export LOG_DIRECTORY="~"
+fi
+
+export date_format="+%Y-%m-%d"
 
 function lstodo()
 {
-  cmd="grep '\[ \]' * $@ --exclude=*.tmpl"
+  cmd="grep '\[ \]' $LOG_DIRECTORY/* $@ --exclude=*.tmpl"
   echo "$cmd"
   eval $cmd
 }
@@ -38,7 +43,7 @@ function week()
       cat $tmplname >> $fname
     fi
   fi
-  $LOG_EDITOR "$LOG_DIRECTORY/$fname"
+  eval $LOG_EDITOR "$LOG_DIRECTORY/$fname"
 }
 
 function log()
@@ -53,5 +58,10 @@ function log()
       cat $tmplname >> $fname
     fi
   fi
-  $LOG_EDITOR "$LOG_DIRECTORY/$fname"
+  eval $LOG_EDITOR "$LOG_DIRECTORY/$fname"
 }
+
+alias tomorrow='$LOG_EDITOR $(date -d tomorrow "$date_format").md'
+alias today='$LOG_EDITOR $(date "$date_format").md'
+alias yesterday='$LOG_EDITOR $(date -d yesterday "$date_format").md'
+alias whattodo='lstodo -nl | vim -'
