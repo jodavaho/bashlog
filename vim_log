@@ -1,0 +1,19 @@
+set nu
+
+command Lw w | !git add % &&  git commit % -m "Checkin %" && git push
+
+set filetype=markdown
+au BufRead,BufNewFile *.md set filetype=markdown
+set autochdir
+
+:highlight TODOTRACK ctermbg=cyan ctermfg=white
+:highlight DONETRACK ctermbg=green 
+:highlight TAGTRACK ctermbg=blue 
+:highlight REDTRACK ctermbg=red 
+:highlight TRASHTRACK ctermbg=gray ctermfg=black
+
+:let mdone = matchadd("DONETRACK","\\[x\\]")
+:let mdone = matchadd("DONETRACK","\\[v\\]")
+:let mtodo = matchadd("TODOTRACK", "\\[ \\]")
+:let mhigh = matchadd("REDTRACK", "\\[-\\]")
+:let mtrash = matchadd("TRASHTRACK", "\\[v\\]")
