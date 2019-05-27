@@ -133,7 +133,7 @@ This has the advantage of not requiring any directory changes, looing away from 
 By default, we use environment variables, which can be over-ridden as you see fit, by exporting the variable in `.bashrc` before `source bashlog.sh`
 
 - `LOG_DIRECTORY`, Default: `~`
-- `LOG_EDTIOR`, Default: `vim`; For best effect, use `vim -S <this directory>/vim_log`, where `<this directory>` is, when, you put this repo
+- `LOG_EDTIOR`, Default: `vim`; For best effect, the `bashlog.sh` will actually set `LOG_EDITOR` to `vim -S <this directory>/vim_log`, where `<this directory>` is, where you put this repo
 
 You can always adjust these environment variables on the fly as you change working contexts or project workspaces, to keep a consistent pointer to the log directory. 
 
