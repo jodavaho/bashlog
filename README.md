@@ -48,7 +48,7 @@ cat vim_log >> ~/.vimrc
 
 See image:
 
-[!bulletColor](doc/BulletColor.png)
+![bulletColor](doc/BulletColor.png)
 
 ## Getting todo items on CLI
 
