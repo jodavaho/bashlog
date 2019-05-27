@@ -60,6 +60,14 @@ I usually do this:
 
 My daily morning ritual to prioritize is to scroll through list, using `gF` to jump to the todo item, mark it, and `b#` jump back. Vimrc settings to help with this are `set autowrite`
 
+## Weekly
+
+However, for most todos, I set weekly goals. For this, I use `week`.
+This creates files like `2019-week-X` where `X` is the current week. Ticking off weekly goals leading up to the weekend is *quite* rewarding.
+
+You can view last week with `week -1` or next week with `week +1`, or arbitrarily `week +/-X` to jump around. 
+
+
 # Log tips
 
 the `log` command uses `date` and `dateutils` to form the filename. SO you can do nifty things like:
@@ -73,7 +81,7 @@ etc
 
 ## Journaling
 
-I like to write my daily thoughts (e.g., journal), using `log` and re-read yesterday / the before by using `log yesterday` and `log last wed` for example. However, for most todos, I set weekly goals. For this, I use `week`.
+I like to write my daily thoughts (e.g., journal), using `log` and re-read yesterday / the before by using `log yesterday` and `log last wed` for example. 
 
 I've been using this system for almost a decade. As of the time of this commit ...
 
@@ -90,12 +98,6 @@ thoughts in plain text. I've given real thought to applying some analytics to
 this dataset, including sentiment analysis. Though I go on and off with the
 habit of journalling, lowering the barrier of adding an entry has significantly
 helped. 
-
-## Weekly
-
-This creates files like `2019-week-X` where `X` is the current week. Ticking off weekly goals leading up to the weekend is *quite* rewarding.
-
-You can view last week with `week -1` or next week with `week +1`, or arbitrarily `week +/-X` to jump around. 
 
 ## Different log directories.
 
@@ -132,6 +134,8 @@ By default, we use environment variables, which can be over-ridden as you see fi
 
 - `LOG_DIRECTORY`, Default: `~`
 - `LOG_EDTIOR`, Default: `vim`; For best effect, use `vim -S <this directory>/vim_log`, where `<this directory>` is, when, you put this repo
+
+You can always adjust these environment variables on the fly as you change working contexts or project workspaces, to keep a consistent pointer to the log directory. 
 
 # Help
 
