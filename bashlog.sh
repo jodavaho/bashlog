@@ -2,12 +2,12 @@
 
 export bashlog_setup_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
 
-if [ -z ${LOG_EDITOR} ];
+if [ -z "${LOG_EDITOR}" ]
 then
   export LOG_EDITOR="vim -S $bashlog_setup_dir/vim_log"
 fi
 
-if [ -z ${LOG_DIRECTORY} ];
+if [ -z "${LOG_DIRECTORY}" ]
 then
   export LOG_DIRECTORY="~"
 fi
