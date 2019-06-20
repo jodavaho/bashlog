@@ -5,6 +5,7 @@ command Lw w | !git add % &&  git commit % -m "Checkin %" && git push
 set filetype=markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 set autochdir
+syntax enable
 
 :highlight TODOTRACK ctermbg=cyan ctermfg=white
 :highlight DONETRACK ctermbg=green 
