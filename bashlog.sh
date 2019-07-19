@@ -21,6 +21,11 @@ function lstodo()
   eval $cmd
 }
 
+function newish()
+{
+  find $logdir -mtime -10 -type f -not -path '*.git/*'
+}
+
 function week()
 {
   if [ $# -gt 0 ]; then
