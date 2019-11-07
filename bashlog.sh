@@ -16,7 +16,7 @@ export date_format="+%Y-%m-%d"
 
 function lstodo()
 {
-  cmd="grep '\[ \]' $LOG_DIRECTORY/* $@ --exclude=*.tmpl"
+  cmd="grep '\[ \]' * $@ --exclude=*.tmpl"
   echo "$cmd"
   eval $cmd
 }
@@ -48,7 +48,7 @@ function week()
       cat $tmplname >> $fname
     fi
   fi
-  eval $LOG_EDITOR "$LOG_DIRECTORY/$fname"
+  eval $LOG_EDITOR "$fname"
 }
 
 function log()
@@ -64,7 +64,7 @@ function log()
       cat $tmplname >> $fname
     fi
   fi
-  eval $LOG_EDITOR "$LOG_DIRECTORY/$fname" "$LOG_DIRECTORY/$week"
+  eval $LOG_EDITOR "$fname" "$week"
 }
 
 alias tomorrow='$LOG_EDITOR $(date -d tomorrow "$date_format").md'
