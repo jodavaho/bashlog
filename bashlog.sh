@@ -54,6 +54,7 @@ function week()
 function log()
 {
   local dstring=$(date "$date_format" -d "$*"  )
+  local week=$(date -d "$*" +%Y-week-%V.md)
 	local fname="$dstring.md"
   if [ ! -f "$fname" ]; then
     echo "new entry"
@@ -63,7 +64,7 @@ function log()
       cat $tmplname >> $fname
     fi
   fi
-  eval $LOG_EDITOR "$LOG_DIRECTORY/$fname"
+  eval $LOG_EDITOR "$LOG_DIRECTORY/$fname" "$LOG_DIRECTORY/$week"
 }
 
 alias tomorrow='$LOG_EDITOR $(date -d tomorrow "$date_format").md'

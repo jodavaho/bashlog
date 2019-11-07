@@ -20,3 +20,8 @@ syntax enable
 :let mhigh = matchadd("REDTRACK", "\\[-\\]")
 :let mtrash = matchadd("TRASHTRACK", "\\[v\\]")
 :let mdelay = matchadd("PUSHTRACK", "\\[>\\]")
+
+au FileType markdown match DATE "\d\d-\d\d-\d\d"
+au FileType markdown match DATE "\d\d-\d\d-\d\d"
+au FileType markdown match PROJ "\d\d\d;"
+au FileType markdown match PROJ "\w\w\w;"
