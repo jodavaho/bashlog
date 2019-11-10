@@ -7,10 +7,18 @@ then
   export LOG_EDITOR="vim -S $bashlog_setup_dir/vim_log"
 fi
 
-if [ -z "${LOG_DIRECTORY}" ]
+if [ ${LOG_ABSOLUTE:-false} = true ]
 then
-  export LOG_DIRECTORY="~"
+  if [ -z "${LOG_DIRECTORY}" ]
+  then
+    export LOG_DIRECTORY="~"
+  fi
+  echo "Logging to $LOG_DIRECTORY"
+else 
+  echo "Relative logging (./)"
+  export LOG_DIRECTORY="."
 fi
+
 
 export date_format="+%Y-%m-%d"
 
@@ -41,10 +49,10 @@ function week()
   fi
 	local fname="$dstring.md"
   local tmplname="weekly.md.tmpl"
-  if [ ! -f "$fname" ] && [ -f "$tmplname" ]; then
-      eval "$LOG_EDITOR -c 'read daily.md.tmpl' $fname"
+  if [ ! -f "$LOG_DIRECTORY/$fname" ] && [ -f "$LOG_DIRECTORY/$tmplname" ]; then
+      eval "$LOG_EDITOR -c 'cd $LOG_DIRECTORY' -c 'read $LOG_DIRECTORY/$tmplname' $LOG_DIRECTORY/$fname"
   else
-    eval "$LOG_EDITOR $fname"
+    eval "$LOG_EDITOR $LOG_DIRECTORY/$fname"
   fi
 }
 
@@ -53,11 +61,9 @@ function log()
   local dstring=$(date "$date_format" -d "$*"  )
 	local fname="$dstring.md"
   local tmplname="daily.md.tmpl"
-  if [ ! -f "$fname" ] && [ -f "$tmplname" ]; then
-      eval "$LOG_EDITOR -c 'read daily.md.tmpl' $fname"
+  if [ ! -f "$LOG_DIRECTORY/$fname" ] && [ -f "$LOG_DIRECTORY/$tmplname" ]; then
+      eval "$LOG_EDITOR -c 'cd $LOG_DIRECTORY' -c 'read $LOG_DIRECTORY/$tmplname' $LOG_DIRECTORY/$fname"
   else
-    eval "$LOG_EDITOR $fname"
+    eval "$LOG_EDITOR $LOG_DIRECTORY/$fname"
   fi
 }
-
-alias whattodo='lstodo -nl | vim -'
