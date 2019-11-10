@@ -40,34 +40,24 @@ function week()
     local dstring=$(date +%G-week-%V)
   fi
 	local fname="$dstring.md"
-  if [ ! -f "$fname" ]; then
-    echo "new entry"
-    local tmplname="weekly.md.tmpl"
-    if [ -f "$tmplname" ]; then
-      echo "found templ"
-      cat $tmplname >> $fname
-    fi
+  local tmplname="weekly.md.tmpl"
+  if [ ! -f "$fname" ] && [ -f "$tmplname" ]; then
+      eval "$LOG_EDITOR -c 'read daily.md.tmpl' $fname"
+  else
+    eval "$LOG_EDITOR $fname"
   fi
-  eval $LOG_EDITOR "$fname"
 }
 
 function log()
 {
   local dstring=$(date "$date_format" -d "$*"  )
-  local week=$(date -d "$*" +%Y-week-%V.md)
 	local fname="$dstring.md"
-  if [ ! -f "$fname" ]; then
-    echo "new entry"
-    local tmplname="daily.md.tmpl"
-    if [ -f "$tmplname" ]; then
-      echo "found templ"
-      cat $tmplname >> $fname
-    fi
+  local tmplname="daily.md.tmpl"
+  if [ ! -f "$fname" ] && [ -f "$tmplname" ]; then
+      eval "$LOG_EDITOR -c 'read daily.md.tmpl' $fname"
+  else
+    eval "$LOG_EDITOR $fname"
   fi
-  eval $LOG_EDITOR "$fname" "$week"
 }
 
-alias tomorrow='$LOG_EDITOR $(date -d tomorrow "$date_format").md'
-alias today='$LOG_EDITOR $(date "$date_format").md'
-alias yesterday='$LOG_EDITOR $(date -d yesterday "$date_format").md'
 alias whattodo='lstodo -nl | vim -'
