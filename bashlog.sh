@@ -25,7 +25,6 @@ export date_format="+%Y-%m-%d"
 function lstodo()
 {
   cmd="grep '\[ \]' * $@ --exclude=*.tmpl"
-  echo "$cmd"
   eval $cmd
 }
 
