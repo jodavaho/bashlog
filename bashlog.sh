@@ -28,6 +28,16 @@ function lstodo()
   eval $cmd
 }
 
+function todo()
+{
+  if [ $# -gt 0 ]; 
+  then
+    echo "Args: $@"
+  else
+    eval "$LOG_EDITOR $todofile"
+  fi
+}
+
 function newish()
 {
   find $logdir -mtime -10 -type f -not -path '*.git*'
@@ -53,6 +63,16 @@ function week()
   else
     eval "$LOG_EDITOR $LOG_DIRECTORY/$fname"
   fi
+}
+
+function vitodo()
+{
+  if [ -z "$todo" ]; 
+  then
+    echo "No todo file found ... export '\$todofile'"
+    return
+  fi
+  eval "$LOG_EDITOR $todofile"
 }
 
 function log()
