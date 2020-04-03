@@ -80,8 +80,12 @@ function log()
   local dstring=$(date "$date_format" -d "$*"  )
 	local fname="$dstring.md"
   local tmplname="daily.md.tmpl"
+  local wnum=$(date "+%V" -d "$*" )
+  local ynum=$(date "+%G" -d "$*" )
+  echo "D: $dstring W: $wnum Y: $ynum"
   if [ ! -f "$LOG_DIRECTORY/$fname" ] && [ -f "$LOG_DIRECTORY/$tmplname" ]; then
-      eval "$LOG_EDITOR -c 'cd $LOG_DIRECTORY' -c 'read $LOG_DIRECTORY/$tmplname | :/\$WW/s//\\=strftime(\"%V\")/ | :/\$YY/s//\\=strftime(\"%Y\")/ ' $LOG_DIRECTORY/$fname"
+      #eval "$LOG_EDITOR -c 'cd $LOG_DIRECTORY' -c 'read $LOG_DIRECTORY/$tmplname | :/\$WW/s//\\=strftime(\"%V\")/ | :/\$YY/s//\\=strftime(\"%Y\")/ ' $LOG_DIRECTORY/$fname"
+      eval "$LOG_EDITOR -c 'cd $LOG_DIRECTORY' -c 'read $LOG_DIRECTORY/$tmplname | :/\$WW/s//$wnum/ | :/\$YY/s//$ynum/ ' $LOG_DIRECTORY/$fname"
   else
     eval "$LOG_EDITOR $LOG_DIRECTORY/$fname"
   fi
