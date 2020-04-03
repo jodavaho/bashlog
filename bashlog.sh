@@ -81,7 +81,7 @@ function log()
 	local fname="$dstring.md"
   local tmplname="daily.md.tmpl"
   if [ ! -f "$LOG_DIRECTORY/$fname" ] && [ -f "$LOG_DIRECTORY/$tmplname" ]; then
-      eval "$LOG_EDITOR -c 'cd $LOG_DIRECTORY' -c 'read $LOG_DIRECTORY/$tmplname' $LOG_DIRECTORY/$fname"
+      eval "$LOG_EDITOR -c 'cd $LOG_DIRECTORY' -c 'read $LOG_DIRECTORY/$tmplname | :/\$WW/s//\\=strftime(\"%W\")/ | :/\$YY/s//\\=strftime(\"%Y\")/ ' $LOG_DIRECTORY/$fname"
   else
     eval "$LOG_EDITOR $LOG_DIRECTORY/$fname"
   fi
