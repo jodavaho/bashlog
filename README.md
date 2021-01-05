@@ -2,6 +2,8 @@
 
 A simple, directory-driven logging utility for CLI for quick notes, long journals, or bullet-style todo lists.
 
+Works in bash with vim. But you can easily extend the idea to ther environments
+
 # Setup
 
 1. Get the repo: 
