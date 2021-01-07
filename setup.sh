@@ -4,7 +4,7 @@
 
 if [ -z "${LOG_EDITOR}" ]
 then
-    export LOG_EDITOR="vim -S .vim/aliases/log"
+    export LOG_EDITOR="vim -S ~/.vim/aliases/log"
 fi
 
 if [ ${LOG_ABSOLUTE:-false} = true ]
