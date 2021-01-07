@@ -2,11 +2,9 @@
 
 #Get current directory for fun
 
-export bashlog_setup_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )";
-
 if [ -z "${LOG_EDITOR}" ]
 then
-    export LOG_EDITOR="vim -S $bashlog_setup_dir/vim_log"
+    export LOG_EDITOR="vim -S .vim/aliases/log"
 fi
 
 if [ ${LOG_ABSOLUTE:-false} = true ]
