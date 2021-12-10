@@ -40,7 +40,7 @@ While logging, just use the handy bullet-style todo items:
 
 To spice it up a bit, I added the color-highlights in `vim_log`, and they are added by default when you type `log`.
 
-(otherwise, Just add to your .bashrc: `export LOG_EDITOR=`vim -S vim_log`)
+(otherwise, Just add to your .bashrc: `export LOG_EDITOR='vim -S vim_log'`)
 
 Or, just add it to .vimrc forever if you really like it.
 
